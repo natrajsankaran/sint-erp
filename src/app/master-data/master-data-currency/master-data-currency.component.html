@@ -1,0 +1,93 @@
+<div class="page-content">
+  <div class="header">
+    <h2>Displaying All <strong>Currencies</strong> In Detail</h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li>
+          <a [routerLink]="['../overview']">Master Data</a>
+        </li>
+        <li class="active"> Currencies
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header border-bottom">
+          <h3><i class="fa fa-table"></i> Currencies</h3>
+        </div>
+        <div class="panel-content inner-loader-container">
+          <div class="inner-loader" [ngClass]="{'loaded':!isLoading['currenciesListData']}">
+            <div></div>
+          </div>
+          <div class="table-responsive" *ngIf="currenciesListData && currenciesListData.length > 0">
+            <table class=" table">
+              <thead>
+                <tr class="bg-primary">
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Currency Name</th>
+                  <th class="col-md-2">Code</th>
+                  <th class="col-md-2">Symbol</th>
+                  <th class="col-md-2">Symbol (In HTML)</th>
+                  <th class="col-md-1">Use in Forms</th>
+                  <th class="col-md-2">Edit</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="false">
+                <ng-template ngFor let-currency [ngForOf]="currenciesListData" let-i="index">
+                  <tr class="border-bottom" *ngIf="!currency.isEditted">
+                    <td>{{i+1}}</td>
+                    <td>{{currency.currencyName}}</td>
+                    <td>
+                      {{currency.code}}
+                    </td>
+                    <td>
+                      {{currency.symbol}}
+                    </td>
+                    <td>
+                      <span [innerHTML]="currency.symbolHTML"></span>
+                    </td>
+                    <td><span class="label" [ngClass]="currency.isEnabled ? 'label-success' : 'label-danger'">{{ currency.isEnabled ? 'Enabled' : 'Disabled'}}</span></td>
+                    <td><button class="btn btn-sm btn-primary c-white w-700 m-0" (click)="editCurrency(currency)"> <i class="fa fa-edit"></i> Edit</button></td>
+                  </tr>
+                  <tr class="border-bottom form-row" *ngIf="currency.isEditted" [formGroup]="currency.currencyForm">
+                    <td class="form-has-value">{{i+1}}</td>
+                    <td [ngClass]="{'form-has-value': currency._id}">
+                      <span *ngIf="currency._id"> {{currency.currencyName}} </span>
+                      <app-input-style-a [form]="currency.currencyForm" [field]="{ privateKey: 'currencyName', label: 'Currency Name', type: 'text', inputStyle: inputStyle }" *ngIf="!currency._id"></app-input-style-a>
+                    </td>
+                    <td>
+                      <app-input-style-a [form]="currency.currencyForm" [field]="{ privateKey: 'code', label: 'Code', type: 'text', inputStyle: inputStyle }"></app-input-style-a>
+                    </td>
+                    <td>
+                      <app-input-style-a [form]="currency.currencyForm" [field]="{ privateKey: 'symbol', label: 'Symbol', type: 'text', inputStyle: inputStyle }"></app-input-style-a>
+                    </td>
+                    <td>
+                      <app-input-style-a [form]="currency.currencyForm" [field]="{ privateKey: 'symbolHTML', label: 'Symbol (In HTML)', type: 'text', inputStyle: inputStyle }"></app-input-style-a>
+                    </td>
+                    <td>
+                      <app-input-style-a [form]="currency.currencyForm" [field]="{ privateKey: 'isEnabled', label: 'Use in Forms', type: 'checkbox', question: 'Enable', inputStyle: inputStyle }"></app-input-style-a>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-success c-white w-700 m-0" [disabled]="currency.currencyForm.invalid" (click)="saveCurrency(currency)"> <i class="fa fa-save"></i> Save</button>
+                      <button class="btn btn-sm btn-warning c-white w-700 m-b-0" (click)="cancelCurrencyAction(currency)"> <i class="fa fa-remove"></i> Cancel</button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+          <div class="row" *ngIf="false">
+            <div class="col-xs-12" *ngIf="!currenciesListData || (currenciesListData && currenciesListData.length == 0)">
+              <p class="text-center p-b-10 border-bottom">No Currencies!</p>
+            </div>
+            <div class="col-xs-12">
+              <button class="btn btn-primary pull-right m-r-0" type="button" (click)="newCurrency()" *ngIf="isAddCurrencyEnabled">ADD CURRENCY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

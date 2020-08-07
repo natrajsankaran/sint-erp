@@ -1,0 +1,14 @@
+#pseudo-body {
+  overflow-x: hidden;
+  margin-top: 50px;
+  height: auto;
+}
+
+#pseudo-body>section {
+  opacity: 1;
+}
+
+#pseudo-body .sidebar .sidebar-inner .nav-sidebar .arrow:not(.fa)::before {
+  content: "\e604";
+  font-family: "simple-line-icons" !important;
+}

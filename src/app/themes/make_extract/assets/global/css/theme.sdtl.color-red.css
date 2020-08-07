@@ -1,0 +1,176 @@
+/* Main Color Red */
+.color-red .topbar .header-left .topnav > ul > li > a::before,
+.color-red .sidebar .sidebar-inner .nav-sidebar > li.nav-parent.active > a:hover,
+.color-red .nav-sidebar > li.nav-parent.active > a:active,
+.color-red .sidebar .sidebar-inner .nav-sidebar > li.active > a,
+.color-red .topbar .header-left .topnav > ul > li .dropdown-menu > li > a:hover,
+.color-red .sidebar .sidebar-inner .nav-sidebar > li.active > a,
+.color-red .nav-sidebar > li.active > a:hover,
+.color-red .badge-primary,
+.color-red .btn-primary,
+.color-red .bg-primary,
+.color-red .nav-tabs.nav-primary > li > a::before,
+.color-red .pace .pace-progress,
+.color-red .ui-datepicker-current-day .ui-state-active,
+.color-red .ui-datepicker-today a:hover,
+.color-red .ui-timepicker-div .ui-slider .ui-slider-range,
+.color-red .ui-timepicker-div .ui-slider .ui-slider-handle:before,
+.color-red .sf-sea .sf-nav li.sf-active,
+.color-red .sf-sea .sf-nav li.sf-nav-link:hover,
+.color-red .sf-arrow .sf-nav li.sf-active,
+.color-red .sf-arrow .sf-wizard .sf-btn:after,
+.color-red .sf-sky .sf-nav li.sf-active .sf-nav-number,
+.color-red .sf-circle .sf-nav li.sf-active .sf-nav-number-inner:before,
+.color-red .sf-circle .sf-nav li.sf-nav-prev-step .sf-nav-number-inner:before,
+.color-red .sf-sky .sf-wizard .sf-btn:after,
+.color-red .sidebar .sidebar-inner .nav-sidebar > li.active > a:hover .color-red .nav-sidebar > li.active > a:focus,
+.color-red.sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a span:not(.badge),
+.color-red.sidebar-collapsed .topbar .header-left .topnav .menutoggle,
+.color-red .label-primary,
+.color-red .progress-bar-primary,
+.color-red .progress-bar-primary[value]::-webkit-progress-value,
+.color-red.sidebar-collapsed .topbar .header-left .topnav .menu__handle,
+.color-red .pagination2 .pagination > .active > a {
+  background-color: #c9625f !important;
+}
+.color-red .topbar .header-left .topnav > ul > li > a:hover,
+.color-red .topbar .header-left .topnav > ul > li > a:focus,
+.color-red .topbar .header-left .topnav > ul > li.open > a,
+.color-red .topbar .header-left .topnav > ul > li.active > a,
+.color-red .topbar .header-left .topnav > ul > li > a:hover,
+.color-red .main-content .page-content .header .breadcrumb li a,
+.color-red .topbar .header-left .topnav > ul > li > a:focus,
+.color-red .c-primary,
+.color-red .text-primary,
+.color-red .font-animation a i,
+.color-red .topbar .header-left .topnav > ul > li.open > a,
+.color-red .topbar .header-left .topnav > ul > li.active > a,
+.color-red .main-content .footer .copyright a,
+.color-red .sf-simple .sf-nav li.sf-active,
+.color-red .sf-simple .sf-nav li.sf-nav-link:hover {
+  color: #c9625f;
+}
+.color-red .bg-dark .ammapObjectList a:hover {
+  color: #b7413e;
+}
+.color-red .btn-primary:hover {
+  background: #b7413e;
+}
+.color-red .ui-timepicker-div .ui-slider .ui-slider-handle {
+  border: 3px solid #c9625f;
+}
+.color-red .sf-arrow .sf-nav li.sf-active:after,
+.color-red .sf-arrow .sf-nav li.sf-nav-step-1.sf-active:after {
+  border-left: 26px solid #c9625f;
+}
+.color-red .sf-simple .sf-nav li.sf-active .sf-nav-number {
+  background: #c9625f;
+  border-color: #c9625f;
+}
+.color-red .ios-switch input[type="checkbox"] + div {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), transparent), linear-gradient(90deg, #c9625f 50%, transparent 50%);
+}
+.color-red .switch-input:checked ~ .switch-label {
+  background: #c9625f;
+}
+.color-red .onoffswitch .onoffswitch-active .onoffswitch-switch {
+  background: #c9625f;
+}
+.color-red .onoffswitch .onoffswitch-active .onoffswitch-switch:before {
+  border-color: #c9625f rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #c9625f;
+}
+.color-red .onoffswitch2 .onoffswitch-inner:before {
+  background-color: #c9625f;
+}
+.color-red.rtl .onoffswitch .onoffswitch-active .onoffswitch-switch:before {
+  border-color: rgba(0, 0, 0, 0) #c9625f #c9625f rgba(0, 0, 0, 0);
+}
+/* SD/TW : theme red */
+.theme-sdtl.color-red .sidebar {
+  background-color: #3c2120;
+}
+.theme-sdtl.color-red:not(.sidebar-top) .logopanel,
+.theme-sdtl.color-red .topbar .header-left .topnav > ul > li.active > a::before,
+.theme-sdtl.color-red .topbar .header-left .topnav > ul > li.open > a::before,
+.theme-sdtl.color-red .topbar .header-left .topnav > ul > li > a:hover::before,
+.theme-sdtl.color-red .topbar .header-left .topnav > ul > li > a:focus::before {
+  background: #c9625f;
+}
+.theme-sdtl.color-red .topbar {
+  background: #ffffff;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner {
+  background: #3c2120;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar > li.active > a,
+.theme-sdtl.color-red .nav-sidebar > li.active > a:hover,
+.theme-sdtl.color-red .nav-sidebar > li.active > a:focus {
+  background: #c9625f;
+}
+.theme-sdtl.color-red:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li.nav-parent > a:hover,
+.theme-sdtl.color-red:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li > a:hover,
+.theme-sdtl.color-red:not(.sidebar-collapsed) .nav-sidebar > li > a:active,
+.theme-sdtl.color-red:not(.sidebar-collapsed) .nav-sidebar > li > a:focus {
+  background: none;
+  color: #fff;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .menu-title .menu-settings .dropdown-menu > li > a:hover {
+  background: #2e100f;
+  color: #FFF;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar > li.active > a:hover {
+  background: #c9625f;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar .nav-parent .children,
+.theme-sdtl.color-red .sidebar .sidebar-inner .sidebar-footer,
+.theme-sdtl.color-red .sidebar .sidebar-inner .sidebar-top .searchform input {
+  background: #2e100f;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .menu-title {
+  color: rgba(255, 255, 255, 0.3);
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .sidebar-top .userlogged > i {
+  color: rgba(255, 255, 255, 0.3);
+}
+.theme-sdtl.color-red.sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.nav-active.active > a {
+  background: #c9625f !important;
+}
+.theme-sdtl.color-red.sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a span:not(.badge) {
+  background: #c9625f !important;
+}
+.theme-sdtl.color-red.sidebar-collapsed .topbar .header-left .topnav .menutoggle {
+  background: #c9625f;
+}
+.theme-sdtl.color-red .topbar .header-left .topnav .menu__handle {
+  background: none;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .menu-title .menu-settings .dropdown-menu > li > a:hover {
+  background: #c9625f;
+  color: #fff;
+}
+.theme-sdtl.color-red.sidebar-top .nav-sidebar > li.nav-hover > a,
+.theme-sdtl.color-red.rtl .sidebar-top .nav-sidebar > li.nav-hover > a {
+  background: #2e100f !important;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .sidebar-footer .pull-left:hover,
+.theme-sdtl.color-red .sidebar-footer .pull-left:active,
+.theme-sdtl.color-red .sidebar-footer .pull-left:focus {
+  background-color: #130706;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar .children:after {
+  border-left: 1px solid #130706;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar .children li:before {
+  background: #130706;
+}
+.theme-sdtl.color-red.submenu-hover .sidebar .sidebar-inner .nav-sidebar > li.nav-parent.nav-hover:before {
+  border-right-color: #2e100f;
+}
+.theme-sdtl.color-red .sidebar .sidebar-inner .nav-sidebar .children > li.active > a {
+  color: #ffffff !important;
+}
+.theme-sdtl.color-red .dropdown-menu > .active > a,
+.theme-sdtl.color-red .dropdown-menu > .active > a:focus,
+.theme-sdtl.color-red .dropdown-menu > .active > a:hover {
+  background: #c9625f;
+}

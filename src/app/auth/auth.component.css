@@ -1,0 +1,384 @@
+#pseudo-body {
+  height: 100%;
+  background: #F5F5F5;
+  color: #5B5B5B;
+  font-family: 'Lato', 'Open Sans', Helvetica, sans-serif !important;
+  line-height: 1.42857143;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+}
+.m-b-20 {
+  margin-bottom: 20px !important;
+}
+.bg-red:not(i) {
+  background-color: #C9625F !important;
+  color: #fff !important;
+}
+i.bg-red::before {
+  background-color: #C9625F !important;
+  color: #fff !important;
+}
+.bg-red.form-control:focus {
+  background-color: #C9625F !important;
+  color: #fff !important;
+}
+.form-control {
+  -webkit-box-shadow: none !important;
+  background-color: #ECEDEE;
+  border: 1px solid #ECEDEE;
+  box-shadow: none !important;
+  color: #555555;
+  display: inline-block;
+  font-size: 13px;
+  height: auto;
+  line-height: normal;
+  padding: 9px 12px 8px;
+  vertical-align: middle;
+  width: 100%;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.form-control::-webkit-input-placeholder {
+  color: #B5B5B5;
+}
+.form-control:-moz-placeholder {
+  color: #B5B5B5;
+}
+.form-control::-moz-placeholder {
+  color: #B5B5B5;
+}
+.form-control:-ms-input-placeholder {
+  color: #B5B5B5;
+}
+.form-control:focus {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: #ffffff !important;
+  background-color: #e9ebef !important;
+  border-color: #A0BDDA;
+  border: 1px solid #CFD2D6;
+  box-shadow: none;
+  outline: none;
+  outline: none !important;
+}
+.form-control[class*="bg-"] {
+  color: #121212 !important;
+}
+.form-control[class*="bg-"]::-webkit-input-placeholder {
+  color: #EEEEEE;
+}
+.form-control[class*="bg-"]:-moz-placeholder {
+  color: #EEEEEE;
+}
+.form-control[class*="bg-"]::-moz-placeholder {
+  color: #EEEEEE;
+}
+.form-control[class*="bg-"]:-ms-input-placeholder {
+  color: #EEEEEE;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+.form-control.form-white {
+  background-color: #ffffff;
+  border: 1px solid #ECEDEE;
+  color: #555555;
+}
+.form-control.form-white:hover {
+  background-color: #ffffff !important;
+  border: 1px solid #C5C8CB;
+  color: #555555;
+  outline: none;
+}
+.form-control.form-white:focus {
+  background-color: #ffffff !important;
+  border: 1px solid #C5C8CB;
+  color: #555555;
+  outline: none;
+}
+.form-control.form-white:visited {
+  background-color: #ffffff !important;
+  border: 1px solid #C5C8CB;
+  color: #555555;
+  outline: none;
+}
+.form-horizontal .append-icon i {
+  right: 15px;
+}
+.append-icon {
+  position: relative;
+}
+.append-icon input {
+  padding-right: 36px;
+}
+.append-icon i {
+  color: #1b1e25;
+  color: rgba(27, 30, 37, 0.3);
+  font-size: 14px;
+  height: 34px;
+  left: auto;
+  line-height: 34px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 36px;
+}
+.append-icon[class*="bg-"] ~ i {
+  color: #F3F3F3;
+}
+.btn {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  padding: 7px 24px 8px;
+  transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.btn:hover {
+  color: #fff;
+  outline: 0;
+  outline: none;
+}
+.btn:focus {
+  color: #fff;
+  outline: none !important;
+  outline: 0;
+  outline: none;
+}
+.btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: 0;
+  outline: none;
+}
+
+.btn-dark {
+  background-color: #353940;
+  color: #fff;
+}
+.btn-dark .caret {
+  border-top-color: #DDE4EC;
+}
+.btn-dark:active {
+  background: #1e2024;
+  border-color: #1e2024;
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active,
+.open .dropdown-toggle.btn-dark {
+  background-color: #292d32;
+  border-color: #292d32;
+  color: #fff !important;
+}
+.btn-dark.active {
+  background: #1e2024;
+  border-color: #1e2024;
+}
+.btn-dark.disabled,
+.btn-dark[disabled],
+.btn-dark.disabled:hover,
+.btn-dark[disabled]:hover,
+.btn-dark.disabled:focus,
+.btn-dark[disabled]:focus,
+.btn-dark.disabled:active,
+.btn-dark[disabled]:active,
+.btn-dark.disabled.active,
+.btn-dark[disabled].active {
+  background-color: #000000;
+  border-color: #000000;
+}
+.btn.btn-rounded {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+#pseudo-body.account2 {
+  background: url(/assets/images/background/scenic-factory.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.account2 .container {
+  width: 100%;
+}
+.account2 .user-img {
+  color: #ffffff;
+  display: block;
+  font-size: 75px;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  position: relative;
+  text-align: center;
+  top: 0;
+}
+.account2 .account-info {
+  display: none;
+}
+.account2 .account-form {
+  background: #ffffff;
+  display: block;
+  padding: 30px;
+  position: relative;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+.account2 .account-form a {
+  color: #A7A7A7;
+}
+.account2 .account-form a:hover {
+  color: #838383;
+}
+.account2 .account-form .forgot-password {
+  padding-top: 4px;
+}
+.account2 .form-signin input[type="password"] {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.account2 .form-signin h3 {
+  font-family: 'Lato';
+  font-weight: 100;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.account2 .form-signin h3 strong {
+  font-family: 'Lato', arial, sans-serif;
+  font-weight: 900;
+}
+.account2 .form-signup input[type="password"] {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.account2 .form-signup h3 {
+  font-family: 'Lato';
+  font-weight: 100;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.account2 .form-signup h3 strong {
+  font-family: 'Lato', arial, sans-serif;
+  font-weight: 900;
+}
+.account2 .form-footer {
+  background: #F4F4F4;
+  border-top: 1px solid #dddddd;
+  margin: 30px -30px -30px -30px;
+  padding: 20px 30px;
+}
+.account2 .social-btn {
+  padding-top: 0;
+}
+.account2 .btn.btn-lg {
+  font-size: 15px;
+  padding: 8px 48px 6px;
+}
+.account2 .btn.btn-lg.btn-fb {
+  font-size: 15px;
+  padding: 8px 48px 6px;
+}
+.account2 .forgot-password {
+  float: right;
+  margin-top: 5px;
+}
+.account2 .new-here {
+  float: right;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.account-copyright {
+  bottom: 10px;
+  color: #BDBDBD;
+  font-family: 'Open Sans';
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  .account-copyright {
+    position: relative;
+    margin-top: 40px;
+  }
+}
+.account2 .form-signin input[type="text"],
+.account2 .form-signin input[type="email"],
+.account2 .form-signup input[type="text"],
+.account2 .form-signup input[type="email"] {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .account2 .container {
+    height: 100%;
+    margin: auto;
+    position: relative;
+    width: 670px;
+  }
+  .account2 .account-info {
+    background: #319DB5;
+    color: #ffffff;
+    display: block;
+    display: table-cell;
+    padding: 30px;
+    text-align: left;
+    vertical-align: top;
+    width: 43%;
+  }
+  .account2 .account-info .logo {
+    color: #ffffff;
+    font-family: 'Lato', arial, sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    background: url(/assets/images/logo/logo-180x30.png) no-repeat;
+    height: 31px;
+    margin-bottom: 15px;
+    display: block;
+  }
+  .account2 .account-info h3 {
+    font-family: 'Open Sans';
+    font-size: 17px;
+    margin-top: 5px;
+  }
+  .account2 .account-info ul {
+    margin: 30px 0 0;
+    padding: 0;
+  }
+  .account2 .account-info ul li {
+    font-size: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+  }
+  .account2 .account-info ul li i {
+    padding-right: 8px;
+  }
+  .account2 .account-form {
+    display: table-cell;
+    vertical-align: top;
+    width: 57%;
+  }
+}
