@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MasterDataCurrencyComponent } from './master-data-currency.component';
+import { MasterDataCRUDComponent } from './master-data-crud.component';
 
-describe('MasterDataCurrencyComponent', () => {
-  let component: MasterDataCurrencyComponent;
-  let fixture: ComponentFixture<MasterDataCurrencyComponent>;
+describe('MasterDataCRUDComponent', () => {
+  let component: MasterDataCRUDComponent;
+  let fixture: ComponentFixture<MasterDataCRUDComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MasterDataCurrencyComponent ]
+      declarations: [ MasterDataCRUDComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MasterDataCurrencyComponent);
+    fixture = TestBed.createComponent(MasterDataCRUDComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

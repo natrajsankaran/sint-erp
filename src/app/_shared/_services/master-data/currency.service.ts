@@ -21,11 +21,11 @@ export class CurrencyService {
     return this.apiService.getData(API_CURRENCY);
   }
 
-  get(currencyId): Observable<any> {
+  get(currencyId: string): Observable<any> {
     return this.apiService.getData(API_CURRENCY + "/" + currencyId);
   }
 
-  update(currencyId, updatedCurrency): Observable<any> {
+  update(currencyId: string, updatedCurrency: object): Observable<any> {
     return this.apiService.postData(API_CURRENCY + "/" + currencyId, updatedCurrency);
   }
 

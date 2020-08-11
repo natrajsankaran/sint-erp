@@ -8,18 +8,7 @@
         </h1>
       </div>
       <div class="sidebar-inner">
-        <ul class="nav nav-sidebar">
-          <li class="nav-parent">
-            <a href=""><i class="icon-grid"></i><span>Store</span> <span class="fa arrow"></span></a>
-            <ul class="children collapse">
-              <li><a [routerLink]="['/store/master/blend-chart']"> Blend Chart</a></li>
-              <li><a [routerLink]="['/store/master/raw-material']"> Raw Material</a></li>
-              <li><a [routerLink]="['/store/master/machine']"> Machine (Remove)</a></li>
-              <li><a [routerLink]="['/store/master/equipment']"> Equipment</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav nav-sidebar">
+        <ul class="nav nav-sidebar m-t-20">
           <li *ngFor="let myMenuItem of myMenuItems" [ngClass]="{'nav-hover': myMenuItem.hover, 'nav-parent': myMenuItem.active, 'active': myMenuItem.active}" (mouseover)="myMenuItemHoverClass(myMenuItem)"
             (mouseout)="myMenuItemHoverClass(myMenuItem)">
             <a [routerLink]="myMenuItem.routerLink ? myMenuItem.routerLink : null" (click)="myMenuItemActivateClass(myMenuItem)"><i [ngClass]="myMenuItem.icon"></i><span>{{ myMenuItem.name }}</span> <span class="arrow icon-arrow-down"
@@ -40,19 +29,6 @@
             <a class="menutoggle" (click)="isSideBarCollapsed=!isSideBarCollapsed"><span class="menu__handle"><span>Menu</span></span></a>
           </div>
         </div>
-        <div class="header-right">
-          <ul class="header-menu nav navbar-nav">
-            <!-- BEGIN USER DROPDOWN -->
-            <li class="dropdown" id="user-header">
-              <a data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <span class="icon-user"></span>
-                <span class="username">Hi, John Doe</span>
-              </a>
-            </li>
-            <!-- END USER DROPDOWN -->
-          </ul>
-        </div>
-        <!-- header-right -->
       </div>
       <!-- END TOPBAR -->
       <!-- HACK for making some stylesheets to be applied to all childs. Negative consequence the style sheets apply to complete application. -->

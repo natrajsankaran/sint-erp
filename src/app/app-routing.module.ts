@@ -7,7 +7,8 @@ import { ConsoleComponent } from './console/console.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EnquiryListComponent } from './enquiry-list/enquiry-list.component';
 import { MasterDataOverviewComponent } from './master-data/master-data-overview/master-data-overview.component';
-import { MasterDataCurrencyComponent } from './master-data/master-data-currency/master-data-currency.component';
+import { MasterDataCRUDComponent } from './master-data/master-data-crud/master-data-crud.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/public', pathMatch: 'full' },
@@ -34,10 +35,14 @@ const routes: Routes = [
             component: MasterDataOverviewComponent
           },
           {
-            path: 'currencies',
-            component: MasterDataCurrencyComponent
+            path: ':master-data-type',
+            component: MasterDataCRUDComponent
           },
         ],
+      },
+      {
+        path: 'project',
+        component: ProjectListComponent,
       },
     ],
   },

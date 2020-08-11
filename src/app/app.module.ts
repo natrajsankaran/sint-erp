@@ -9,7 +9,9 @@ import { ConsoleComponent, ConsoleMainContentComponent } from './console/console
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EnquiryListComponent } from './enquiry-list/enquiry-list.component';
 import { MasterDataOverviewComponent } from './master-data/master-data-overview/master-data-overview.component';
-import { MasterDataCurrencyComponent } from './master-data/master-data-currency/master-data-currency.component';
+import { SharedModule } from './_shared/shared.module';
+import { MasterDataCRUDComponent } from './master-data/master-data-crud/master-data-crud.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { MasterDataCurrencyComponent } from './master-data/master-data-currency/
     DashboardComponent,
     EnquiryListComponent,
     MasterDataOverviewComponent,
-    MasterDataCurrencyComponent,
+    MasterDataCRUDComponent,
+    ProjectListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

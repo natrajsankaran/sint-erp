@@ -36,7 +36,7 @@ const MY_MENU_ITEMS: MenuItem[] = [
   {
     id: 4,
     name: 'Projects',
-    routerLink: '/console',
+    routerLink: '/console/project',
     icon: 'icon-notebook',
     displayOrderWeight: -3,
   },
@@ -48,16 +48,22 @@ const MY_MENU_ITEMS: MenuItem[] = [
     displayOrderWeight: -4,
     children: [
       {
+        id: 12,
+        name: 'Job Cards',
+        routerLink: '/console',
+        displayOrderWeight: -1,
+      },
+      {
         id: 6,
         name: 'In-House Schedule',
         routerLink: '/console',
-        displayOrderWeight: -1,
+        displayOrderWeight: -2,
       },
       {
         id: 7,
         name: 'Sub-Contracted Schedule',
         routerLink: '/console',
-        displayOrderWeight: -2,
+        displayOrderWeight: -3,
       },
     ]
   },
@@ -99,6 +105,9 @@ const MY_MENU_ITEMS: MenuItem[] = [
     '../themes/make_extract/assets/global/css/style.main-content.css',
     '../themes/make_extract/assets/global/css/style.widget-quicklinks.css',
     '../themes/make_extract/assets/global/css/ui.shared.css',
+    '../themes/make_extract/assets/global/css/ui.btn.css',
+    '../themes/make_extract/assets/global/css/ui.form.css',
+    '../themes/make_extract/assets/global/css/ui.table.css',
     '../themes/make_extract/assets/global/css/theme.sdtl.color-red.css',
     '../themes/make_extract/assets/admin/layout1/css/layout.css',
   ],

@@ -1,0 +1,82 @@
+<div class="page-content">
+  <div class="header">
+    <h2>Displaying All <strong class="camel-case">{{terminology.plural}}</strong> In Detail</h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li>
+          <a [routerLink]="['../overview']">Master Data</a>
+        </li>
+        <li class="active"> <span class="camel-case">{{terminology.plural}}</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header border-bottom">
+          <h3><i class="material-icons-outlined">{{terminology.icon}}</i> <span class="camel-case">{{terminology.plural}}</span></h3>
+        </div>
+        <div class="panel-content">
+          <div class="table-responsive">
+            <table class="table table-hover dataTable">
+              <thead>
+                <tr>
+                  <ng-template ngFor let-question [ngForOf]="editFormQuestions">
+                    <th [ngClass]="question.options.columnHeading.cssClasses">{{question.options.columnHeading.label}}</th>
+                  </ng-template>
+                  <th class="col-md-1 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-template ngFor let-edittableListItem [ngForOf]="edittableList" let-i="index">
+                  <tr>
+                    <ng-container *ngIf="!edittableListItem.isEditted">
+                      <ng-template ngFor let-question [ngForOf]="editFormQuestions">
+                        <td>
+                          <ng-template [ngIf]="question.controlType != 'CHECKBOX' && !(question.options.cellView && question.options.cellView.isInnerHTML && question.options.cellView.isInnerHTML == true)">
+                            {{edittableListItem[question.privateKey]}}
+                          </ng-template>
+                          <ng-template [ngIf]="question.controlType == 'CHECKBOX'">
+                            <span class="label" [ngClass]="edittableListItem[question.privateKey] ? 'label-success' : 'label-danger'">
+                              {{ edittableListItem[question.privateKey] ? 'Enabled' : 'Disabled'}}
+                            </span>
+                          </ng-template>
+                          <ng-template [ngIf]="question.options.cellView && question.options.cellView.isInnerHTML && question.options.cellView.isInnerHTML == true">
+                            <span [innerHTML]="edittableListItem[question.privateKey]"></span>
+                          </ng-template>
+                        </td>
+                      </ng-template>
+                      <td class="text-right">
+                        <button class="edit btn btn-sm btn-default" (click)="editEdittableListItem(edittableListItem)">
+                          <i class="icon-note"></i>
+                        </button>
+                      </td>
+                    </ng-container>
+                    <ng-container *ngIf="edittableListItem.isEditted">
+                      <ng-template ngFor let-question [ngForOf]="editFormQuestions">
+                        <td>
+                          <app-form-question [question]="question" [form]="edittableListItem.editForm"></app-form-question>
+                        </td>
+                      </ng-template>
+                      <td class="text-right">
+                        <button class="edit btn btn-sm btn-success" (click)="saveEdittableListItem(edittableListItem)">
+                          Save
+                        </button>
+                      </td>
+                    </ng-container>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+          <div class="text-right">
+            <div class="btn-group">
+              <button class="btn btn-sm btn-dark" (click)="newMasterData()"><i class="icon-plus"></i> Add New <span class="camel-case">{{terminology.singular}}</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

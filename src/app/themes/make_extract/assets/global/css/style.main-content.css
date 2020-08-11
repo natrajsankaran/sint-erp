@@ -1,7 +1,35 @@
+/* Fix for using material icons */
+.main-content .page-content .panel-header i.material-icons-outlined {
+  vertical-align: middle;
+}
+.btn-block i.material-icons-outlined {
+  vertical-align: sub;
+  margin-top: 0;
+}
+/* end of fix */
+
+/* Fix for using simple line icons */
+.main-content .page-content .panel .panel-content .btn i {
+  vertical-align: text-bottom;
+}
+/* end of fix */
+
+/* For developer notes */
+.builder-toggle {
+  cursor: pointer;
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1010;
+}
+
 .main-content {
   background: #F5F5F5;
   margin-left: 240px;
-  min-height: 750px;
+  min-height: calc(100vh - 50px);  /* min-height: 750px; */
 }
 .main-content .page-content {
   background: #F5F5F5;

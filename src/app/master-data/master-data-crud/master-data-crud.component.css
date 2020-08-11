@@ -1,0 +1,3 @@
+:not(li)>.camel-case {
+  text-transform: capitalize;
+}
