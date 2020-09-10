@@ -1,3 +1,38 @@
 <ng-container [formGroup]="form">
-  <input type="text" class="form-control small" [formControlName]="question.privateKey">
+
+  <!-- If no inputStyle or controlOnly -->
+  <ng-template #controlOnly [ngIf]="!inputStyle" [ngIfElse]="styledInput">
+
+    <ng-container [ngSwitch]="question.controlType">
+
+      <input *ngSwitchCase="'TEXTBOX'" [type]="question.controlType" class="form-control input-sm" [formControlName]="question.privateKey">
+
+      <textarea *ngSwitchCase="'TEXTAREA'" class="form-control"></textarea>
+
+    </ng-container>
+
+    <!-- <input type="text" class="form-control" [formControlName]="question.privateKey"> -->
+
+  </ng-template>
+
+  <!-- If inputStyle exists-->
+  <ng-template #styledInput>
+    <div class="form-group">
+      <label class="control-label" [ngClass]="labelCssClasses">{{question.label}}</label>
+
+      <!-- If controlHorizontal-->
+      <ng-template [ngIf]="inputStyle.controlHorizontal" [ngIfElse]="controlVertical">
+        <div [ngClass]="controlCssClasses">
+          <ng-template [ngTemplateOutlet]="controlOnly"></ng-template>
+        </div>
+      </ng-template>
+
+      <!-- If not controlHorizontal-->
+      <ng-template #controlVertical>
+        <ng-template [ngTemplateOutlet]="controlOnly"></ng-template>
+      </ng-template>
+
+    </div>
+  </ng-template>
+
 </ng-container>

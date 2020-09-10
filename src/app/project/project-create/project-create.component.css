@@ -1,0 +1,18 @@
+.toggled-container-control {
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
+
+.toggle-on, .toggle-off {
+  font-size: 40px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.toggle-on {
+  color: #159077;
+}
+
+.toggle-off {
+  color: #333333;
+}

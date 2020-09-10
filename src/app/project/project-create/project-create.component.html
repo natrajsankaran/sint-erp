@@ -1,0 +1,198 @@
+<div class="page-content">
+  <div class="header">
+    <h2>Creating New <strong>Project</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li>
+          <a [routerLink]="['../']">Projects</a>
+        </li>
+        <li class="active">
+          New Project
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header border-bottom">
+          <h3><i class="material-icons-outlined">add_box</i> New Project</h3>
+        </div>
+        <div class="panel-content">
+          <form role="form" [formGroup]="projectCreateForm">
+            <div class="form-horizontal">
+              <app-form-question [question]="projectCreateFormQuestionnaire.title" [form]="projectCreateForm"></app-form-question>
+              <app-form-question [question]="projectCreateFormQuestionnaire.description" [form]="projectCreateForm"></app-form-question>
+              <div class="bg-white border bd-6 m-b-15">
+                <h5 class="bold m-0 p-15">PRODUCT INFORMATION</h5>
+                <div class="border-top m-l-20 m-r-20 p-t-10">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Use from existing Enquiry <br />(Or Provide Product Details)
+                    </label>
+                    <div class="col-md-9">
+                      <span class="material-icons-outlined" [ngClass]="isLinkedToAnEnquiry ? 'toggle-on' : 'toggle-off'" (click)="toggleLinkToEnquiry()">{{isLinkedToAnEnquiry ? 'toggle_on' : 'toggle_off'}}</span>
+                    </div>
+                  </div>
+                  <ng-template [ngIf]="isLinkedToAnEnquiry">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Bind to An Enquiry
+                      </label>
+                      <div class="col-md-9">
+                        <select id="language" name="language" class="form-control" required>
+                          <option value="">Select...</option>
+                          <option value="EN">English</option>
+                          <option value="FR">French</option>
+                          <option value="SP">Spanish</option>
+                          <option value="CH">Chinese</option>
+                          <option value="JP">Japanese</option>
+                        </select>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <ng-template [ngIf]="!isLinkedToAnEnquiry">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Part ID
+                      </label>
+                      <div class="col-md-9">
+                        <input type="text" name="name" class="form-control" placeholder="" minlength="3" required="" aria-required="true">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">HSN Code
+                      </label>
+                      <div class="col-md-9">
+                        <input type="text" name="name" class="form-control" placeholder="" minlength="3" required="" aria-required="true">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Quantity
+                      </label>
+                      <div class="col-md-9">
+                        <input type="text" name="name" class="form-control" placeholder="" minlength="3" required="" aria-required="true">
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="bg-white border bd-6 m-b-15">
+                <h5 class="bold m-0 p-15">
+                  PROJECT MEMBERS, CHANNEL AND ACCESS CONTROL
+                  <span class="material-icons-outlined toggled-container-control" [ngClass]="hasAccessControlShown ? 'toggle-on' : 'toggle-off'" (click)="toggleAccessControl()">{{hasAccessControlShown ? 'toggle_on' : 'toggle_off'}}</span> <i class="text-md">&nbsp;({{!hasAccessControlShown ? 'Configure Later' : 'Disable to Configure Later'}})</i>
+                </h5>
+                <ng-template [ngIf]="hasAccessControlShown">
+                  <div class="border-top m-l-20 m-r-20 p-t-10">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Use Preset Configuration <br />(Or Provide Details)
+                      </label>
+                      <div class="col-md-9">
+                        <span class="material-icons-outlined" [ngClass]="isAccessControlFromPreset ? 'toggle-on' : 'toggle-off'" (click)="toggleAccessControlFromPreset()">{{isAccessControlFromPreset ? 'toggle_on' : 'toggle_off'}}</span>
+                      </div>
+                    </div>
+                    <ng-template [ngIf]="isAccessControlFromPreset">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Bind to An Enquiry
+                        </label>
+                        <div class="col-md-9">
+                          <select id="language" name="language" class="form-control" required>
+                            <option value="">Select...</option>
+                            <option value="EN">English</option>
+                            <option value="FR">French</option>
+                            <option value="SP">Spanish</option>
+                            <option value="CH">Chinese</option>
+                            <option value="JP">Japanese</option>
+                          </select>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template [ngIf]="!isAccessControlFromPreset">
+                      <p>PLACEHOLDER</p>
+                    </ng-template>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="bg-white border bd-6 m-b-15">
+              <h5 class="bold m-0 p-15">
+                ADVANCED
+                <span class="material-icons-outlined toggled-container-control" [ngClass]="hasAdvancedShown ? 'toggle-on' : 'toggle-off'" (click)="toggleAdvanced()">{{hasAdvancedShown ? 'toggle_on' : 'toggle_off'}}</span>
+              </h5>
+              <ng-template [ngIf]="hasAdvancedShown">
+                <div class="border-top m-l-20 m-r-20 p-t-10">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Status</label>
+                        <select id="language" name="language" class="form-control" required>
+                          <option value="">In Progress</option>
+                          <option value="EN">English</option>
+                          <option value="FR">French</option>
+                          <option value="SP">Spanish</option>
+                          <option value="CH">Chinese</option>
+                          <option value="JP">Japanese</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Bind to A Customer (Optional)</label>
+                        <select id="language" name="language" class="form-control" required>
+                          <option value="">Select...</option>
+                          <option value="EN">English</option>
+                          <option value="FR">French</option>
+                          <option value="SP">Spanish</option>
+                          <option value="CH">Chinese</option>
+                          <option value="JP">Japanese</option>
+                        </select>
+                      </div>
+                    </div>
+                    <ng-template [ngIf]="!isLinkedToAnEnquiry">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label">Bind to An Enquiry (Optional)</label>
+                          <select id="language" name="language" class="form-control" required>
+                            <option value="">Select...</option>
+                            <option value="EN">English</option>
+                            <option value="FR">French</option>
+                            <option value="SP">Spanish</option>
+                            <option value="CH">Chinese</option>
+                            <option value="JP">Japanese</option>
+                          </select>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <div class="row">
+              <div class="col-md-9 col-md-offset-3">
+                <div class="pull-right">
+                  <a class="cancel btn btn-embossed btn-default m-r-20" [routerLink]="['../']">CANCEL</a>
+                  <button class="btn btn-embossed  btn-blue m-b-10 m-r-0">CREATE</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a class="builder-toggle" (click)="toggleDeveloperNotesShown()"><i class="icon-wrench"></i></a>
+<ng-template [ngIf]="isDeveloperNotesShown">
+  <div class="m-20 m-l-60 m-r-60 p-20 bg-blue">
+    <p>- Each Project is assumed to have only one Product, Customer and Enquiry</p>
+    <p>- Are Part ID/Part Name/Part Number and HSN Code Obtained during Enquiry? (Drawing information is assumed to be obtained during Enquiry)</p>
+    <p>- Is an Internal Reference Code assigned for a Product and Design?</p>
+    <p>- Is Design Done separately or in app? If in app at which stage, Enquiry or Project?</p>
+    <p>- Are any Target Dates, Dispatch Dates, Start, End etc. provided at this stage ?</p>
+    <p>- Are Production Details, Raw Materials, Tools, Suppliers, etc. provided at this stage ?</p>
+    <p>- Are any details from following screens to be included in Project Creation or Project Management?
+      <object data="/assets/developer_reference/project-create-query-slides.pdf" type="application/pdf" width="100%" height="800px">
+        <p><a href="/assets/developer_reference/project-create-query-slides.pdf">Link to the PDF!</a></p>
+      </object>
+    </p>
+  </div>
+</ng-template>

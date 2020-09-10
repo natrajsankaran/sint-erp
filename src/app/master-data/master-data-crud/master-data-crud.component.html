@@ -15,7 +15,7 @@
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-header border-bottom">
-          <h3><i class="material-icons-outlined">{{terminology.icon}}</i> <span class="camel-case">{{terminology.plural}}</span></h3>
+          <h3><i class="material-icons-outlined">{{terminology.icon}}</i> {{terminology.plural}}</h3>
         </div>
         <div class="panel-content">
           <div class="table-responsive">
@@ -31,7 +31,7 @@
               <tbody>
                 <ng-template ngFor let-edittableListItem [ngForOf]="edittableList" let-i="index">
                   <tr>
-                    <ng-container *ngIf="!edittableListItem.isEditted">
+                    <ng-template [ngIf]="!edittableListItem.isEditted">
                       <ng-template ngFor let-question [ngForOf]="editFormQuestions">
                         <td>
                           <ng-template [ngIf]="question.controlType != 'CHECKBOX' && !(question.options.cellView && question.options.cellView.isInnerHTML && question.options.cellView.isInnerHTML == true)">
@@ -52,8 +52,8 @@
                           <i class="icon-note"></i>
                         </button>
                       </td>
-                    </ng-container>
-                    <ng-container *ngIf="edittableListItem.isEditted">
+                    </ng-template>
+                    <ng-template [ngIf]="edittableListItem.isEditted">
                       <ng-template ngFor let-question [ngForOf]="editFormQuestions">
                         <td>
                           <app-form-question [question]="question" [form]="edittableListItem.editForm"></app-form-question>
@@ -64,7 +64,7 @@
                           Save
                         </button>
                       </td>
-                    </ng-container>
+                    </ng-template>
                   </tr>
                 </ng-template>
               </tbody>

@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Questionnaire, Question, ControlType, ValidatorType } from '../../_shared/_types/_form/question';
+import { Question, ControlType, ValidatorType } from '../../_shared/_types/_form/question';
 import { EdittableListItem } from '../../_shared/_types/_form/edittableListItem';
 import { FormQuestionUtilityService } from '../../_shared/_services/_form/form-question-utility.service';
 import { Currency } from '../../_shared/_types/master-data/currency';
@@ -1169,12 +1168,10 @@ export class MasterDataCRUDComponent implements OnInit, OnDestroy {
   listData: Currency[] | Tax[] | Operation[] | Machine[] | PackagingStandard[] | Equipment[] | RawMaterial[] | Blend[];
   edittableList: CurrencyEdittableListItem[] | TaxEdittableListItem[] | OperationEdittableListItem[] | MachineEdittableListItem[] | PackagingStandardEdittableListItem[] | EquipmentEdittableListItem[] | RawMaterialEdittableListItem[] | BlendEdittableListItem[];
   editFormQuestions: Question[];
-  editFormQuestionnaire: Questionnaire;
 
   constructor(
     private route: ActivatedRoute,
     private formQuestionUtilityService: FormQuestionUtilityService,
-    private formBuilder: FormBuilder,
     private currencyService: CurrencyService,
     private taxService: TaxService,
     private operationService: OperationService,
@@ -1287,7 +1284,6 @@ export class MasterDataCRUDComponent implements OnInit, OnDestroy {
       default:
         break;
     }
-    this.editFormQuestionnaire = this.formQuestionUtilityService.convertQuestionsToQuestionnaire(this.editFormQuestions);
 
     /* initialise with values from server */
     switch (this.selectedCollection) {
@@ -1406,344 +1402,28 @@ export class MasterDataCRUDComponent implements OnInit, OnDestroy {
 
   newMasterData() {
     let newEdittableListItem: CurrencyEdittableListItem | TaxEdittableListItem | OperationEdittableListItem | MachineEdittableListItem | PackagingStandardEdittableListItem | EquipmentEdittableListItem | RawMaterialEdittableListItem | BlendEdittableListItem;
-    switch (this.selectedCollection) {
-      case MasterDataType.CURRENCY:
-        (newEdittableListItem as CurrencyEdittableListItem) = {
-          currencyName: "",
-          code: "",
-          symbol: "",
-          symbolHTML: "",
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.TAX:
-        (newEdittableListItem as TaxEdittableListItem) = {
-          taxName: "",
-          percentage: 0,
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.OPERATION:
-        (newEdittableListItem as OperationEdittableListItem) = {
-          operationName: "",
-          description: "",
-          isEnabledInHouse: true,
-          isEnabledSubContract: true,
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.MACHINE:
-        (newEdittableListItem as MachineEdittableListItem) = {
-          code: "",
-          machineName: "",
-          isEnabled: true,
-          make: "",
-          countryOfOrigin: "",
-          purchaseDate: "",
-          lastServiceDate: "",
-          dueServiceDate: "",
-          criticalSpares: "",
-          operation: "",
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.PACKAGING_STANDARD:
-        (newEdittableListItem as PackagingStandardEdittableListItem) = {
-          packagingStandardName: "",
-          code: "",
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.EQUIPMENT:
-        (newEdittableListItem as EquipmentEdittableListItem) = {
-          code: "",
-          equipmentName: "",
-          make: "",
-          purchaseDate: "",
-          lastCalibrationDate: "",
-          dueCalibrationDate: "",
-          leastCount: "",
-          operatingRange: "",
-          location: "",
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.RAW_MATERIAL:
-        (newEdittableListItem as RawMaterialEdittableListItem) = {
-          powderCode: "",
-          powderManufacturer: "",
-          powderManufacturerCode: "",
-          baseIronPowderType: "",
-          ni: "",
-          cu: "",
-          mo: "",
-          mn: "",
-          mns: "",
-          c: "",
-          si: "",
-          cr: "",
-          s: "",
-          p: "",
-          ot: "",
-          k_lube: "",
-          a_wax: "",
-          znS: "",
-          fe: "",
-          flowRate: "",
-          ad: "",
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      case MasterDataType.BLEND:
-        (newEdittableListItem as BlendEdittableListItem) = {
-          blendCode: "",
-          powderGrade: "",
-          powderType: "",
-          baseIronPowderType: "",
-          ni: "",
-          cu: "",
-          mo: "",
-          mns: "",
-          c: "",
-          kenolube: "",
-          acrawax: "",
-          zincSterate: "",
-          fe: "",
-          isEnabled: true,
-          isEditted: false,
-          editForm: null
-        };
-        break;
-      default:
-        break;
+
+    (newEdittableListItem as { [k: string]: any }) = {};
+    for (const question of this.editFormQuestions) {
+      (newEdittableListItem as { [k: string]: any })[question.privateKey] = this.formQuestionUtilityService.initializeDefaultValueForQuestion(question);
     }
+    newEdittableListItem.isEditted = false;
+    newEdittableListItem.editForm = null;
+
     this.pushListItemAsEdittableListItem(newEdittableListItem);
     this.editEdittableListItem(newEdittableListItem);
   }
 
   saveEdittableListItem(edittableListItem: CurrencyEdittableListItem | TaxEdittableListItem | OperationEdittableListItem | MachineEdittableListItem | PackagingStandardEdittableListItem | EquipmentEdittableListItem | RawMaterialEdittableListItem | BlendEdittableListItem) {
     let editFormData = edittableListItem.editForm.value;
-    switch (this.selectedCollection) {
-      case MasterDataType.CURRENCY:
-        (edittableListItem as CurrencyEdittableListItem).currencyName = editFormData.currencyName;
-        (edittableListItem as CurrencyEdittableListItem).code = editFormData.code;
-        (edittableListItem as CurrencyEdittableListItem).symbol = editFormData.symbol;
-        (edittableListItem as CurrencyEdittableListItem).symbolHTML = editFormData.symbolHTML;
-        (edittableListItem as CurrencyEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.TAX:
-        (edittableListItem as TaxEdittableListItem).taxName = editFormData.taxName;
-        (edittableListItem as TaxEdittableListItem).percentage = editFormData.percentage;
-        (edittableListItem as TaxEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.OPERATION:
-        (edittableListItem as OperationEdittableListItem).operationName = editFormData.operationName;
-        (edittableListItem as OperationEdittableListItem).description = editFormData.description;
-        (edittableListItem as OperationEdittableListItem).isEnabledInHouse = editFormData.isEnabledInHouse;
-        (edittableListItem as OperationEdittableListItem).isEnabledSubContract = editFormData.isEnabledSubContract;
-        (edittableListItem as OperationEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.MACHINE:
-        (edittableListItem as MachineEdittableListItem).code = editFormData.code;
-        (edittableListItem as MachineEdittableListItem).machineName = editFormData.machineName;
-        (edittableListItem as MachineEdittableListItem).isEnabled = editFormData.isEnabled;
-        (edittableListItem as MachineEdittableListItem).make = editFormData.make;
-        (edittableListItem as MachineEdittableListItem).countryOfOrigin = editFormData.countryOfOrigin;
-        (edittableListItem as MachineEdittableListItem).purchaseDate = editFormData.purchaseDate;
-        (edittableListItem as MachineEdittableListItem).lastServiceDate = editFormData.lastServiceDate;
-        (edittableListItem as MachineEdittableListItem).dueServiceDate = editFormData.dueServiceDate;
-        (edittableListItem as MachineEdittableListItem).criticalSpares = editFormData.criticalSpares;
-        (edittableListItem as MachineEdittableListItem).operation = editFormData.operation;
-        break;
-      case MasterDataType.PACKAGING_STANDARD:
-        (edittableListItem as PackagingStandardEdittableListItem).packagingStandardName = editFormData.packagingStandardName;
-        (edittableListItem as PackagingStandardEdittableListItem).code = editFormData.code;
-        (edittableListItem as PackagingStandardEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.EQUIPMENT:
-        (edittableListItem as EquipmentEdittableListItem).code = editFormData.code;
-        (edittableListItem as EquipmentEdittableListItem).equipmentName = editFormData.equipmentName;
-        (edittableListItem as EquipmentEdittableListItem).make = editFormData.make;
-        (edittableListItem as EquipmentEdittableListItem).purchaseDate = editFormData.purchaseDate;
-        (edittableListItem as EquipmentEdittableListItem).lastCalibrationDate = editFormData.lastCalibrationDate;
-        (edittableListItem as EquipmentEdittableListItem).dueCalibrationDate = editFormData.dueCalibrationDate;
-        (edittableListItem as EquipmentEdittableListItem).leastCount = editFormData.leastCount;
-        (edittableListItem as EquipmentEdittableListItem).operatingRange = editFormData.operatingRange;
-        (edittableListItem as EquipmentEdittableListItem).location = editFormData.location;
-        (edittableListItem as EquipmentEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.RAW_MATERIAL:
-        (edittableListItem as RawMaterialEdittableListItem).powderCode = editFormData.powderCode;
-        (edittableListItem as RawMaterialEdittableListItem).powderManufacturer = editFormData.powderManufacturer;
-        (edittableListItem as RawMaterialEdittableListItem).powderManufacturerCode = editFormData.powderManufacturerCode;
-        (edittableListItem as RawMaterialEdittableListItem).baseIronPowderType = editFormData.baseIronPowderType;
-        (edittableListItem as RawMaterialEdittableListItem).si = editFormData.si;
-        (edittableListItem as RawMaterialEdittableListItem).cr = editFormData.cr;
-        (edittableListItem as RawMaterialEdittableListItem).s = editFormData.s;
-        (edittableListItem as RawMaterialEdittableListItem).p = editFormData.p;
-        (edittableListItem as RawMaterialEdittableListItem).ot = editFormData.ot;
-        (edittableListItem as RawMaterialEdittableListItem).k_lube = editFormData.k_lube;
-        (edittableListItem as RawMaterialEdittableListItem).a_wax = editFormData.a_wax;
-        (edittableListItem as RawMaterialEdittableListItem).znS = editFormData.znS;
-        (edittableListItem as RawMaterialEdittableListItem).fe = editFormData.fe;
-        (edittableListItem as RawMaterialEdittableListItem).flowRate = editFormData.flowRate;
-        (edittableListItem as RawMaterialEdittableListItem).ad = editFormData.ad;
-        (edittableListItem as RawMaterialEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      case MasterDataType.BLEND:
-        (edittableListItem as BlendEdittableListItem).blendCode = editFormData.blendCode;
-        (edittableListItem as BlendEdittableListItem).powderGrade = editFormData.powderGrade;
-        (edittableListItem as BlendEdittableListItem).powderType = editFormData.powderType;
-        (edittableListItem as BlendEdittableListItem).baseIronPowderType = editFormData.baseIronPowderType;
-        (edittableListItem as BlendEdittableListItem).ni = editFormData.ni;
-        (edittableListItem as BlendEdittableListItem).cu = editFormData.cu;
-        (edittableListItem as BlendEdittableListItem).mo = editFormData.mo;
-        (edittableListItem as BlendEdittableListItem).mns = editFormData.mns;
-        (edittableListItem as BlendEdittableListItem).c = editFormData.c;
-        (edittableListItem as BlendEdittableListItem).kenolube = editFormData.kenolube;
-        (edittableListItem as BlendEdittableListItem).acrawax = editFormData.acrawax;
-        (edittableListItem as BlendEdittableListItem).zincSterate = editFormData.zincSterate;
-        (edittableListItem as BlendEdittableListItem).fe = editFormData.fe;
-        (edittableListItem as RawMaterialEdittableListItem).isEnabled = editFormData.isEnabled;
-        break;
-      default:
-        break;
+    for (const question of this.editFormQuestions) {
+      (edittableListItem as { [k: string]: any })[question.privateKey] = editFormData[question.privateKey];
     }
     edittableListItem.isEditted = false;
   }
 
   editEdittableListItem(edittableListItem: CurrencyEdittableListItem | TaxEdittableListItem | OperationEdittableListItem | MachineEdittableListItem | PackagingStandardEdittableListItem | EquipmentEdittableListItem | RawMaterialEdittableListItem | BlendEdittableListItem) {
-    let editForm: FormGroup;
-    switch (this.selectedCollection) {
-      case MasterDataType.CURRENCY:
-        editForm = this.formBuilder.group({
-          _id: (edittableListItem as CurrencyEdittableListItem)._id,
-          currencyName: (edittableListItem as CurrencyEdittableListItem).currencyName,
-          code: (edittableListItem as CurrencyEdittableListItem).code,
-          symbol: (edittableListItem as CurrencyEdittableListItem).symbol,
-          symbolHTML: (edittableListItem as CurrencyEdittableListItem).symbolHTML,
-          isEnabled: edittableListItem.isEnabled,
-        });
-        break;
-      case MasterDataType.TAX:
-        editForm = this.formBuilder.group({
-          _id: (edittableListItem as TaxEdittableListItem)._id,
-          taxName: (edittableListItem as TaxEdittableListItem).taxName,
-          percentage: (edittableListItem as TaxEdittableListItem).percentage,
-          isEnabled: (edittableListItem as TaxEdittableListItem).isEnabled,
-        });
-        break;
-      case MasterDataType.OPERATION:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          operationName: (edittableListItem as OperationEdittableListItem).operationName,
-          description: (edittableListItem as OperationEdittableListItem).description,
-          isEnabledInHouse: (edittableListItem as OperationEdittableListItem).isEnabledInHouse,
-          isEnabledSubContract: (edittableListItem as OperationEdittableListItem).isEnabledSubContract,
-          isEnabled: (edittableListItem as OperationEdittableListItem).isEnabled,
-        });
-        break;
-      case MasterDataType.MACHINE:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          code: (edittableListItem as MachineEdittableListItem).code,
-          machineName: (edittableListItem as MachineEdittableListItem).machineName,
-          isEnabled: (edittableListItem as MachineEdittableListItem).isEnabled,
-          make: (edittableListItem as MachineEdittableListItem).make,
-          countryOfOrigin: (edittableListItem as MachineEdittableListItem).countryOfOrigin,
-          purchaseDate: (edittableListItem as MachineEdittableListItem).purchaseDate,
-          lastServiceDate: (edittableListItem as MachineEdittableListItem).lastServiceDate,
-          dueServiceDate: (edittableListItem as MachineEdittableListItem).dueServiceDate,
-          criticalSpares: (edittableListItem as MachineEdittableListItem).criticalSpares,
-          operation: (edittableListItem as MachineEdittableListItem).operation,
-        });
-        break;
-      case MasterDataType.PACKAGING_STANDARD:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          packagingStandardName: (edittableListItem as PackagingStandardEdittableListItem).packagingStandardName,
-          code: (edittableListItem as PackagingStandardEdittableListItem).code,
-          isEnabled: (edittableListItem as PackagingStandardEdittableListItem).isEnabled,
-        });
-        break;
-      case MasterDataType.EQUIPMENT:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          code: (edittableListItem as EquipmentEdittableListItem).code,
-          equipmentName: (edittableListItem as EquipmentEdittableListItem).equipmentName,
-          make: (edittableListItem as EquipmentEdittableListItem).make,
-          purchaseDate: (edittableListItem as EquipmentEdittableListItem).purchaseDate,
-          lastCalibrationDate: (edittableListItem as EquipmentEdittableListItem).lastCalibrationDate,
-          dueCalibrationDate: (edittableListItem as EquipmentEdittableListItem).dueCalibrationDate,
-          leastCount: (edittableListItem as EquipmentEdittableListItem).leastCount,
-          operatingRange: (edittableListItem as EquipmentEdittableListItem).operatingRange,
-          location: (edittableListItem as EquipmentEdittableListItem).location,
-          isEnabled: (edittableListItem as EquipmentEdittableListItem).isEnabled,
-        });
-        break;
-      case MasterDataType.RAW_MATERIAL:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          powderCode: (edittableListItem as RawMaterialEdittableListItem).powderCode,
-          powderManufacturer: (edittableListItem as RawMaterialEdittableListItem).powderManufacturer,
-          powderManufacturerCode: (edittableListItem as RawMaterialEdittableListItem).powderManufacturerCode,
-          baseIronPowderType: (edittableListItem as RawMaterialEdittableListItem).baseIronPowderType,
-          ni: (edittableListItem as RawMaterialEdittableListItem).ni,
-          cu: (edittableListItem as RawMaterialEdittableListItem).cu,
-          mo: (edittableListItem as RawMaterialEdittableListItem).mo,
-          mn: (edittableListItem as RawMaterialEdittableListItem).mn,
-          mns: (edittableListItem as RawMaterialEdittableListItem).mns,
-          c: (edittableListItem as RawMaterialEdittableListItem).c,
-          si: (edittableListItem as RawMaterialEdittableListItem).si,
-          cr: (edittableListItem as RawMaterialEdittableListItem).cr,
-          s: (edittableListItem as RawMaterialEdittableListItem).s,
-          p: (edittableListItem as RawMaterialEdittableListItem).p,
-          ot: (edittableListItem as RawMaterialEdittableListItem).ot,
-          k_lube: (edittableListItem as RawMaterialEdittableListItem).k_lube,
-          a_wax: (edittableListItem as RawMaterialEdittableListItem).a_wax,
-          znS: (edittableListItem as RawMaterialEdittableListItem).znS,
-          fe: (edittableListItem as RawMaterialEdittableListItem).fe,
-          flowRate: (edittableListItem as RawMaterialEdittableListItem).flowRate,
-          ad: (edittableListItem as RawMaterialEdittableListItem).ad,
-          isEnabled: (edittableListItem as RawMaterialEdittableListItem).isEnabled,
-        });
-        break;
-      case MasterDataType.BLEND:
-        editForm = this.formBuilder.group({
-          _id: edittableListItem._id,
-          blendCode: (edittableListItem as BlendEdittableListItem).blendCode,
-          powderGrade: (edittableListItem as BlendEdittableListItem).powderGrade,
-          powderType: (edittableListItem as BlendEdittableListItem).powderType,
-          baseIronPowderType: (edittableListItem as BlendEdittableListItem).baseIronPowderType,
-          ni: (edittableListItem as BlendEdittableListItem).ni,
-          cu: (edittableListItem as BlendEdittableListItem).cu,
-          mo: (edittableListItem as BlendEdittableListItem).mo,
-          mns: (edittableListItem as BlendEdittableListItem).mns,
-          c: (edittableListItem as BlendEdittableListItem).c,
-          kenolube: (edittableListItem as BlendEdittableListItem).kenolube,
-          acrawax: (edittableListItem as BlendEdittableListItem).acrawax,
-          zincSterate: (edittableListItem as BlendEdittableListItem).zincSterate,
-          fe: (edittableListItem as BlendEdittableListItem).fe,
-          isEnabled: (edittableListItem as RawMaterialEdittableListItem).isEnabled,
-        });
-        break;
-      default:
-        break;
-    }
-    edittableListItem.editForm = editForm;
+    edittableListItem.editForm = this.formQuestionUtilityService.buildFormFromQuestions(this.editFormQuestions, edittableListItem, true);
     edittableListItem.isEditted = true;
   }
 

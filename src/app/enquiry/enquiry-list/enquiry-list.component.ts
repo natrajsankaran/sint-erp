@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { EnquiryService } from '../enquiry.service';
-import { Enquiry } from '../_types/enquiry';
+import { Enquiry } from '../../_types/enquiry';
+import { EnquiryService } from '../../enquiry.service';
 
 @Component({
   selector: 'app-enquiry-list',

@@ -5,10 +5,12 @@ import { PublicComponent } from './public/public.component';
 import { AuthComponent } from './auth/auth.component';
 import { ConsoleComponent } from './console/console.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EnquiryListComponent } from './enquiry-list/enquiry-list.component';
+import { EnquiryListComponent } from './enquiry/enquiry-list/enquiry-list.component';
 import { MasterDataOverviewComponent } from './master-data/master-data-overview/master-data-overview.component';
 import { MasterDataCRUDComponent } from './master-data/master-data-crud/master-data-crud.component';
-import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { EnquiryCreateComponent } from './enquiry/enquiry-create/enquiry-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/public', pathMatch: 'full' },
@@ -25,7 +27,16 @@ const routes: Routes = [
       },
       {
         path: 'enquiry',
-        component: EnquiryListComponent,
+        children: [
+          {
+            path: '',
+            component: EnquiryListComponent,
+          },
+          {
+            path: 'create',
+            component: EnquiryCreateComponent
+          },
+        ],
       },
       {
         path: 'master-data',
@@ -42,7 +53,16 @@ const routes: Routes = [
       },
       {
         path: 'project',
-        component: ProjectListComponent,
+        children: [
+          {
+            path: '',
+            component: ProjectListComponent,
+          },
+          {
+            path: 'create',
+            component: ProjectCreateComponent
+          },
+        ],
       },
     ],
   },
